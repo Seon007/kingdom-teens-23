@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>킹덤틴즈 23과: 수문 앞 광장의 말씀 부흥</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- html2canvas for Capturing Result -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      padding-bottom: env(safe-area-inset-bottom);
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    .bible-text {
+      font-family: 'Nanum Myeongjo', serif;
+      line-height: 2.0;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f8fafc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    /* Input Styling for seamless inline text flow without line breaks */
+    .qt-input {
+      font-family: 'Pretendard', sans-serif;
+      text-align: center;
+      transition: all 0.2s ease-in-out;
+    }
+    .fade-solution {
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+  <div class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+    <!-- Top Brand Header -->
+    <header class="px-4 py-2.5 border-b border-slate-100 bg-slate-900 text-white">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="bg-teal-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">Kingdom Teens</span>
+          <h1 class="text-xs md:text-sm font-bold text-slate-200">킹덤틴즈 23과 (느헤미야 8장 1-18절)</h1>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button onclick="openResetModal()" class="bg-slate-800 hover:bg-rose-950 text-rose-300 text-[11px] px-2.5 py-1 rounded flex items-center gap-1 transition-all" title="진도 초기화">
+            <i class="fa-solid fa-rotate-left"></i> <span class="hidden sm:inline">처음부터 풀기</span>
+          </button>
+          <button onclick="shareAppUrl()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-2.5 py-1 rounded flex items-center gap-1 transition-all">
+            <i class="fa-solid fa-share-nodes"></i> <span class="hidden sm:inline">초대 링크 복사</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Weekly Study Day Navigation (Monday to Friday) -->
+    <nav class="bg-white px-3 py-2.5 shadow-sm">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 overflow-x-auto">
+        <div class="flex items-center gap-1.5 shrink-0">
+          <span class="text-xs font-bold text-slate-400 mr-1.5"><i class="fa-solid fa-calendar-day"></i> 주간 묵상:</span>
+          <button id="day-tab-mon" onclick="switchDay('mon')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-teal-600 text-white transition-all shadow-sm shrink-0">
+            월(1단계)
+          </button>
+          <button id="day-tab-tue" onclick="switchDay('tue')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            화(2단계)
+          </button>
+          <button id="day-tab-wed" onclick="switchDay('wed')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            수(3단계)
+          </button>
+          <button id="day-tab-thu" onclick="switchDay('thu')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            목(4단계)
+          </button>
+          <button id="day-tab-fri" onclick="switchDay('fri')" class="px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0">
+            금(5단계)
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0 font-semibold">
+          <div class="bg-teal-50 text-teal-800 border border-teal-200 text-[11px] font-bold px-2.5 py-1 rounded-lg">
+            <span id="day-badge-name">월요일 진행 중</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile View Switcher (Reading vs Activity) -->
+    <div class="lg:hidden p-3 bg-slate-50/90 backdrop-blur-sm border-t border-slate-100">
+      <div class="max-w-md mx-auto bg-white p-1 rounded-xl shadow-inner border border-slate-200/60 flex">
+        <button id="tab-btn-reading" onclick="switchMobileTab('reading')" class="flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-teal-800 bg-teal-50 transition-all flex items-center justify-center gap-1.5">
+          📖 <span id="reading-tab-label">성경 말씀 읽기</span>
+        </button>
+        <button id="tab-btn-activity" onclick="switchMobileTab('activity')" class="flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-slate-500 hover:text-slate-800 transition-all flex items-center justify-center gap-1.5">
+          ✏️ <span id="activity-tab-label">문제 풀기</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+    
+    <!-- LEFT PANEL: Bible Verses & Reading Column -->
+    <section id="pane-reading" class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-5 md:p-8 flex flex-col shadow-sm max-h-[calc(100vh-160px)] overflow-y-auto block">
+      
+      <!-- Panel Header Info -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+        <h2 id="left-panel-title" class="text-base md:text-lg font-extrabold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-scroll text-teal-500"></i> 성경 말씀 읽기
+        </h2>
+        <span id="left-panel-meta" class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded font-semibold whitespace-nowrap">느헤미야 8장 1-18절</span>
+      </div>
+      
+      <!-- BIBLE TEXT CONTAINER (Active for Monday, Tuesday, Thursday) -->
+      <div id="left-content-bible" class="bible-text text-slate-700 space-y-5 text-[14px] md:text-[15px] text-justify font-medium">
+        <!-- Loaded dynamically via JavaScript with complete verses 1 to 18 without bold hints -->
+      </div>
+
+      <!-- KINGDOM READING CONTAINER (Active for Wednesday) -->
+      <div id="left-content-reading" class="hidden text-slate-700 space-y-6 bible-text font-medium text-justify">
+        <!-- Loaded dynamically via JavaScript -->
+      </div>
+
+      <!-- QUIZ GUIDE INTRO CONTAINER (Active for Friday) -->
+      <div id="left-content-quizintro" class="hidden text-slate-700 space-y-5">
+        <!-- Loaded dynamically via JavaScript -->
+      </div>
+
+    </section>
+
+    <!-- RIGHT PANEL: Activity / Questions Panel -->
+    <section id="pane-activity" class="lg:col-span-7 flex flex-col gap-6 hidden lg:flex">
+      
+      <div id="right-activity-container" class="space-y-6">
+
+        <!-- ==================== 월요일 (1단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-mon" class="space-y-6">
+          <div class="bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 01</span>
+              <h3 class="text-base font-extrabold mt-1">1단계(월) - 관찰 해석 1: 말씀을 향한 간절한 태도</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 수문 앞 광장에서 선포된 말씀을 향한 백성들의 갈망과 경외의 태도를 배웁니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-book-open-reader"></i></span>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-1">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  성벽 공사를 완공한 후 일곱째 달에, 이스라엘 백성은 어디에 모여 에스라에게 무엇을 가져오기를 청했나요? <span class="text-teal-700 font-semibold text-xs whitespace-nowrap">(느 8:1)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 수문 앞 광장에 모여 모세의 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-mon-1" placeholder="ㅇㅂㅊ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-600 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(1)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>을 가져오기를 청하매</span>
+                  
+                  <div id="badge-mon-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-mon-1" class="hidden fade-solution bg-teal-50/70 border border-teal-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 성벽 공사를 마친 이스라엘 백성은 수문 앞 광장에 한마음으로 모여, 학사 에스라에게 하나님의 말씀인 율법책을 가져와 달라고 간절히 요청했습니다. 외형적인 건물이 세워진 것보다 하나님의 말씀으로 마음을 채우는 영적 부흥이 더 중요했기 때문입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-2">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  에스라는 새벽부터 정오까지 율법책을 읽어주었습니다. 백성은 말씀을 들을 때 어떤 태도를 보였나요? <span class="text-teal-700 font-semibold text-xs whitespace-nowrap">(느 8:3, 5)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 율법책에 귀를 기울였으며, 책을 펼 때에 모든 백성이 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-mon-2" placeholder="ㅇㄹㅅㄴㄹ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-500 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(2)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-mon-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-mon-2" class="hidden fade-solution bg-teal-50/70 border border-teal-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 백성은 새벽부터 정오까지 약 6시간 동안이나 귀를 기울여 말씀을 들었습니다. 또한 에스라가 하나님 말씀을 펼칠 때 모두 자리에서 일어나 하나님 말씀에 대한 최고의 존경과 경외심을 표현했습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-3">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  에스라가 위대하신 하나님 여호와를 송축할 때, 백성은 어떻게 응답했나요? <span class="text-teal-700 font-semibold text-xs whitespace-nowrap">(느 8:6)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 손을 들고 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-mon-3" placeholder="ㅇㅁ ㅇㅁ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-600 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(3)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span> 하고 응답하고 몸을 굽혀 얼굴을 땅에 대고 여호와께 경배하니라</span>
+                </div>
+                <div id="badge-mon-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                  <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                </div>
+                <div id="explain-mon-3" class="hidden fade-solution bg-teal-50/70 border border-teal-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 백성은 에스라의 송축 기도에 ‘아멘 아멘’으로 화답하며 얼굴을 땅에 대고 하나님을 경배했습니다. 이것은 선포되는 말씀이 참된 하나님의 말씀임을 믿고, 그 말씀에 온전히 순종하겠다는 믿음의 고백이었습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-4">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  율법책을 낭독할 때 레위 사람들은 백성을 위해 어떤 일을 했나요? <span class="text-teal-700 font-semibold text-xs whitespace-nowrap">(느 8:7-8)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 그 뜻을 해석하여 백성에게 그 낭독하는 것을 다 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-mon-4" placeholder="ㄲㄷㄱ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-500 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkMonAnswer(4)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span> 하니</span>
+                  
+                  <div id="badge-mon-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-mon-4" class="hidden fade-solution bg-teal-50/70 border border-teal-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 당시 백성은 오랜 포로 생활로 인해 율법이 기록된 히브리어에 익숙하지 않았습니다. 그래서 훈련받은 레위 사람들이 통역하며 백성이 말씀을 잘 이해하고 깨달을 수 있도록 뜻을 해석해 주고 가르쳤습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="mon-card-5">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
+              <div class="space-y-3 w-full">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  [생각 나누기] 백성은 장시간 서서 율법을 깨닫기 위해 집중하며 하나님 말씀을 들었습니다. 평소 나는 예배 시간에 선포되는 설교나 개인 성경 읽기 시간을 어떤 자세로 대하고 있는지 진솔하게 적어 보세요.
+                </p>
+                <textarea id="ans-mon-5" rows="3" placeholder="예: 평소 설교 시간에 쉽게 졸거나 딴생각을 하곤 했는데, 백성들처럼 하나님의 살아계신 말씀으로 믿고 귀 기울여 경청하겠다 등 자유롭게 적어보세요... (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 text-base" oninput="checkMonAnswer(5)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 화요일 (2단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-tue" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 02</span>
+              <h3 class="text-base font-extrabold mt-1">2단계(화) - 관찰 해석 2: 회개와 거룩한 기쁨의 순종</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 말씀을 깨달은 뒤 터져 나온 회개와 나눔, 초막절 순종을 통해 넘치는 기쁨을 배웁니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-campground"></i></span>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-1">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  율법의 말씀을 듣고 그 뜻을 깨달은 이스라엘 백성은 가장 먼저 어떤 반응을 보였나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(느 8:9)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 율법의 말씀을 듣고 다 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-tue-1" placeholder="ㅇㄴㅈㄹ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(1)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-tue-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-1" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 하나님의 말씀을 깊이 깨달은 백성은 자신들이 하나님의 말씀대로 살지 못했던 죄를 발견하고 회개하며 통곡했습니다. 이것은 말씀 앞에 선 백성에게 일어나는 참된 영적 부흥의 첫걸음입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-2">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  느헤미야와 에스라, 레위 사람들은 슬퍼하며 우는 백성에게 오늘은 어떤 날이라고 말하며 무엇을 하라고 권면했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(느 8:10)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 주의 성일이니 살진 것을 먹고 단 것을 마시되 준비하지 못한 자에게는 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-tue-2" placeholder="ㄴㄴㅇ ㅈㄹ" class="qt-input w-28 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(2)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-tue-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-2" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 지도자들은 회개하는 백성에게 오늘은 여호와의 거룩한 날이니 슬퍼하지 말고 기뻐하라고 했습니다. 또한 맛있는 것을 먹으며 가난하고 준비하지 못한 이웃들에게 나누어 주며 기쁨을 함께하라고 명령했습니다. 말씀에 순종하는 삶을 실천하게 한 것입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-3">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  큰 부흥을 경험한 백성은 다음 날 다시 모여 말씀을 듣고, 율법에 기록된 어떤 절기를 지키기로 했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(느 8:14)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 일곱째 달 절기에 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-tue-3" placeholder="ㅊㅁ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-600 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(3)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>에 거할지니라</span>
+                  
+                  <div id="badge-tue-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2.5 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-3" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 백성은 다음 날에도 자발적으로 모여 말씀을 공부하다가, 일곱째 달에 이스라엘 자손은 초막에 거해야 한다는 하나님의 규례를 깨달았습니다. 광야에서 인도해 주신 하나님의 은혜를 기억하는 초막절을 율법대로 지키기로 결단한 것입니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-4">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  백성이 산에 가서 나뭇가지를 가져와 초막을 짓고 일주일 동안 절기를 지킬 때, 그들의 마음이 어떠했나요? <span class="text-amber-700 font-semibold text-xs whitespace-nowrap">(느 8:17)</span>
+                </p>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 크게 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-tue-4" placeholder="ㄱㅃㅎㅁ" class="qt-input w-24 text-center border-b-2 border-slate-300 bg-transparent focus:border-amber-500 focus:outline-none font-bold text-amber-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkTueAnswer(4)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  
+                  <div id="badge-tue-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+                <div id="explain-tue-4" class="hidden fade-solution bg-amber-50/70 border border-amber-100 rounded-xl p-4 mt-2">
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    <strong>해설:</strong> 백성은 여호수아 시대 이후로 이같이 크게 초막절을 지킨 적이 없었습니다. 하나님의 말씀을 깨닫고 그 말씀에 온전히 순종하여 절기를 지켰을 때, 그들의 마음에는 하나님이 주시는 아주 큰 기쁨이 넘쳐났습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="tue-card-5">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
+              <div class="space-y-3 w-full">
+                <p class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">
+                  [생각 나누기] 참된 영적 부흥은 말씀을 깨닫고, 내 죄를 회개하며, 이웃과 사랑을 나누고 말씀대로 ‘순종’하는 데서 완성됩니다. 최근에 내가 배운 하나님의 말씀 중 내 삶에서 순종으로 옮겨야 할 것은 무엇인지 진솔하게 적어 보세요.
+                </p>
+                <textarea id="ans-tue-5" rows="3" placeholder="예: 주변에 외로워하는 친구에게 먼저 다가가 따뜻한 말과 간식을 나누어 주기 / 부모님 말씀에 감사하며 순종하기 등 (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 text-base" oninput="checkTueAnswer(5)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 수요일 (3단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-wed" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-teal-600 to-indigo-600 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 03</span>
+              <h3 class="text-base font-extrabold mt-1">3단계(수) - 킹덤 묵상 리딩</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: '성벽보다 더 중요한 말씀'의 은혜를 묵상하고 삶의 순종 다짐을 적습니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-feather-pointed"></i></span>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">💭</span>
+              <div class="space-y-4 w-full">
+                <h4 class="text-sm md:text-base font-bold text-slate-900 leading-relaxed">말씀을 듣고 회개하며 순종하는 킹덤틴즈의 결단</h4>
+                <p class="text-xs text-slate-500 leading-relaxed text-justify">수요일의 킹덤 리딩(왼쪽 본문)을 읽으며, 에스라 시대 백성들처럼 하나님의 말씀을 귀 기울여 듣고 죄를 회개하며 순종하겠다는 나의 다짐을 적어보세요.</p>
+                
+                <div class="space-y-1.5">
+                  <label for="ans-wed-reflex" class="text-xs font-bold text-slate-500 block">나의 다짐과 고백</label>
+                  <textarea id="ans-wed-reflex" rows="6" placeholder="나는 하나님의 말씀을 귀 기울여 듣고, 죄를 회개하며, 이웃과 사랑을 나누고 말씀에 온전히 순종하는 멋진 하나님 나라 백성이 되겠습니다! (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 text-base" oninput="checkWedAnswer()"></textarea>
+                </div>
+
+                <div class="bg-teal-50 border border-teal-100 p-3 rounded-xl text-xs text-teal-950 flex gap-2">
+                  <i class="fa-solid fa-circle-info text-teal-600 shrink-0 mt-0.5"></i>
+                  <span>수요일 묵상 고백을 채워주시면 다음 단계를 진행할 수 있는 리포트 카드가 생성됩니다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 목요일 (4단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-thu" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 04</span>
+              <h3 class="text-base font-extrabold mt-1">4단계(목) - 하나님 나라 관점</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 23과 핵심 단어인 ‘부흥’을 대교리문답 156문과 연계하여 탐구합니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-compass"></i></span>
+          </div>
+
+          <div class="bg-teal-50 p-4 rounded-xl flex items-center gap-3">
+            <span class="text-xl shrink-0">✨</span>
+            <p class="text-xs text-teal-950 font-bold leading-relaxed">4단계 테마 단어: <span class="bg-teal-100 px-1.5 py-0.5 rounded font-black text-teal-900">‘부흥’</span></p>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-1">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  예루살렘 성전과 성벽 재건 공사가 모두 끝났음에도 불구하고, 하나님 나라가 온전히 회복되기 위해 백성에게 반드시 필요했던 것은 무엇인가요?
+                </p>
+                <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 성전과 성벽 건물이 튼튼히 완공되더라도, 말씀에 반응하는 사람이 없다면 참된 하나님 나라라 할 수 없습니다. 하나님의 말씀이 선포되고 심령이 새롭게 변화되는 백성의 영적 <span class="text-teal-950 font-semibold">부흥</span>이 일어나야 비로소 공동체가 온전히 회복됩니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 하나님의 말씀으로 인한 백성의 영적 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-thu-1" placeholder="ㅂㅎ" class="qt-input w-16 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-600 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(1)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>이 필요했습니다.</span>
+                  
+                  <div id="badge-thu-1" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-2">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  수문 앞 광장에 모인 이스라엘 백성이 경험한 ‘영적 부흥’은 구체적으로 어떤 과정을 통해 나타났나요? <span class="text-teal-700 font-semibold text-xs whitespace-nowrap">(느 8:8-9, 14-17)</span>
+                </p>
+                <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 부흥은 일시적인 감정적 흥분이 아닙니다. 선포된 하나님의 말씀을 올바르게 깨닫고, 지나온 죄를 슬퍼하며 눈물로 회개하고, 나아가 계명에 따라 삶 속에서 기쁘게 <span class="text-teal-950 font-semibold">순종</span>하는 순차적 과정을 통해 나타납니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 말씀을 깨닫고, 죄를 슬퍼하며 회개하고, 말씀대로 기쁘게 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-thu-2" placeholder="ㅅㅈ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-600 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(2)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>하는 과정으로 나타났습니다.</span>
+                  
+                  <div id="badge-thu-2" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-3">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  에스라 시대에 레위인들이 백성에게 하나님의 말씀을 해석하고 깨닫게 해 주었던 것처럼, 오늘날 하나님은 교회에 누구를 세우셔서 이 말씀 사역을 감당하게 하시나요?
+                </p>
+                <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 하나님은 과거 레위 사람들을 구별하셨듯이, 오늘날 교회에 강단에서 복음을 선포하는 목사님과 다음 세대에게 성경을 바르게 가르치는 주일학교 <span class="text-teal-950 font-semibold">교사</span>(선생님)들을 세우셔서 말씀 사역을 맡기십니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 하나님이 세우신 목사님과 성경 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-thu-3" placeholder="ㄱㅅ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-600 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(3)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>들이 그 역할을 감당합니다.</span>
+                  
+                  <div id="badge-thu-3" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-4">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+              <div class="space-y-3 w-full break-keep">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  영적 부흥을 경험한 백성은 거룩한 성일에 자기들만 즐기지 않고 준비하지 못한 자들에게 음식을 나누어 주었습니다. 이런 나눔과 섬김의 모습은 세상 나라와 다른 ‘하나님 나라의 다스림’을 어떻게 보여 주나요? <span class="text-teal-700 font-semibold text-xs whitespace-nowrap">(느 8:10-12)</span>
+                </p>
+                <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 말씀 길잡이: 세상은 힘과 이기심으로 자기 유익을 챙기지만, 하나님 나라 백성은 하나님 말씀에 순종하여 약하고 소외된 이웃과 따뜻한 <span class="text-teal-950 font-semibold">사랑</span>을 함께 나눔으로써 하나님의 자비로운 통치를 드러냅니다.</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs md:text-sm font-semibold text-slate-700 leading-relaxed text-justify">
+                  <span>답: 내 욕심을 채우는 대신 말씀에 순종하여 이웃과 </span>
+                  <span class="inline-flex items-center whitespace-nowrap align-baseline">
+                    <span class="text-slate-400 font-bold">(</span>
+                    <input type="text" id="ans-thu-4" placeholder="ㅅㄹ" class="qt-input w-20 text-center border-b-2 border-slate-300 bg-transparent focus:border-teal-600 focus:outline-none font-bold text-teal-900 text-xs md:text-sm py-0 h-6 align-baseline mx-0.5" oninput="checkThuAnswer(4)">
+                    <span class="text-slate-400 font-bold">)</span>
+                  </span>
+                  <span>을 나눔으로써 하나님의 다스림을 보여 줍니다.</span>
+                  
+                  <div id="badge-thu-4" class="hidden items-center gap-1 text-emerald-600 font-bold text-xs ml-auto mt-2 bg-emerald-50 px-2 py-1 rounded-lg w-fit">
+                    <i class="fa-solid fa-circle-check"></i> 정답 확인됨
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm transition-all" id="thu-card-5">
+            <div class="flex items-start gap-3">
+              <span class="w-6 h-6 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
+              <div class="space-y-3 w-full">
+                <p class="text-sm font-bold text-slate-900 leading-relaxed">
+                  웨스트민스터 대교리문답 156문답을 읽고, 바쁜 학교생활과 일상 속에서 언제, 어떻게 시간을 내어 하나님 말씀을 읽고 묵상할지 나만의 구체적인 실천 계획을 적어 보세요.
+                </p>
+                <div class="bg-teal-50/80 border border-teal-100 rounded-xl p-3.5 text-xs text-slate-700 leading-relaxed">
+                  <p>💡 공적인 예배뿐만 아니라 모든 성도는 개별적으로, 그리고 가족과 함께 성경을 읽어야 할 거룩한 의무가 있습니다. 하루 중 성경을 읽을 구체적인 시간(예: 아침 기상 직후 10분, 잠들기 전 15분)과 묵상 계획을 결단해 보세요.</p>
+                </div>
+                <textarea id="ans-thu-5" rows="3" placeholder="예: 매일 아침 학교 가기 전 10분 동안 큐티 본문을 읽고 기도하기 / 주말에는 가족과 함께 한 장씩 성경을 낭독하고 느낀 점 나누기 등 (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 text-base" oninput="checkThuAnswer(5)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 금요일 (5단계) 콘텐츠 ==================== -->
+        <div id="quiz-day-fri" class="space-y-6 hidden">
+          <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-2xl p-4 shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold uppercase">STEP 05</span>
+              <h3 class="text-base font-extrabold mt-1">5단계(금) - 킹덤 최종 퀴즈</h3>
+              <p class="text-[11px] text-white/90 mt-0.5">목표: 한 주간 배운 느헤미야 8장의 말씀 부흥과 회개, 초막절 순종을 최종 점검합니다.</p>
+            </div>
+            <span class="text-3xl opacity-30"><i class="fa-solid fa-trophy"></i></span>
+          </div>
+
+          <!-- Q1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-1">
+            <span class="text-xs font-bold text-slate-400">질문 1</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">예루살렘 성벽 건축이 완료되었을 때, 이스라엘 백성은 튼튼한 요새가 생겼으므로 더 이상 하나님 말씀을 들을 필요가 없다고 생각했다. (O, X)</h4>
+            
+            <div class="grid grid-cols-2 gap-3 mt-4">
+              <button onclick="selectFriQuiz(1, 1)" id="fri-btn-1-1" class="border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex flex-col items-center gap-2">
+                <span class="text-2xl text-blue-600">O</span>
+                <span class="text-xs">그렇다</span>
+              </button>
+              <button onclick="selectFriQuiz(1, 2)" id="fri-btn-1-2" class="border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex flex-col items-center gap-2">
+                <span class="text-2xl text-red-600">X</span>
+                <span class="text-xs">아니다</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-2">
+            <span class="text-xs font-bold text-slate-400">질문 2</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">에스라가 수문 앞 광장에서 율법책을 펼칠 때 이스라엘 백성이 보인 올바른 태도가 아닌 것은 무엇인가요? (느 8:3-6)</h4>
+            
+            <div class="grid grid-cols-1 gap-3 mt-4">
+              <button onclick="selectFriQuiz(2, 1)" id="fri-btn-2-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">①</div>
+                <p class="text-xs text-slate-700">책을 펼 때 모든 백성이 자리에서 일어났다.</p>
+              </button>
+              <button onclick="selectFriQuiz(2, 2)" id="fri-btn-2-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">②</div>
+                <p class="text-xs text-slate-700">에스라의 기도에 ‘아멘 아멘’으로 화답했다.</p>
+              </button>
+              <button onclick="selectFriQuiz(2, 3)" id="fri-btn-2-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">③</div>
+                <p class="text-xs text-slate-700">말씀을 너무 오래 읽어 지루해하며 빨리 끝내라고 소리쳤다.</p>
+              </button>
+              <button onclick="selectFriQuiz(2, 4)" id="fri-btn-2-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">④</div>
+                <p class="text-xs text-slate-700">몸을 굽혀 얼굴을 땅에 대고 여호와께 경배했다.</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-3">
+            <span class="text-xs font-bold text-slate-400">질문 3</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">율법을 깨닫고 자신의 죄 때문에 통곡하며 우는 백성에게 느헤미야와 에스라는 어떻게 하라고 권면했나요? (느 8:10)</h4>
+            
+            <div class="grid grid-cols-1 gap-3 mt-4">
+              <button onclick="selectFriQuiz(3, 1)" id="fri-btn-3-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">①</div>
+                <p class="text-xs text-slate-700">금식하며 내일까지 계속해서 슬퍼하라.</p>
+              </button>
+              <button onclick="selectFriQuiz(3, 2)" id="fri-btn-3-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">②</div>
+                <p class="text-xs text-slate-700">적들이 쳐들어올지 모르니 전쟁 무기를 준비하라.</p>
+              </button>
+              <button onclick="selectFriQuiz(3, 3)" id="fri-btn-3-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">③</div>
+                <p class="text-xs text-slate-700">거룩한 성일이니 기뻐하며, 음식을 준비하지 못한 자들에게 나누어 주라.</p>
+              </button>
+              <button onclick="selectFriQuiz(3, 4)" id="fri-btn-3-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">④</div>
+                <p class="text-xs text-slate-700">율법을 어겼으니 다시 바벨론 포로로 돌아가야 한다고 말했다.</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-4">
+            <span class="text-xs font-bold text-slate-400">질문 4</span>
+            <h4 class="text-sm md:text-base font-medium text-slate-950 mt-1">느헤미야 8장을 통해 배울 수 있는 성경이 말하는 ‘참된 영적 부흥’의 결과로 가장 알맞은 것은 무엇인가요?</h4>
+            
+            <div class="grid grid-cols-1 gap-3 mt-4">
+              <button onclick="selectFriQuiz(4, 1)" id="fri-btn-4-1" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">①</div>
+                <p class="text-xs text-slate-700">나 혼자서만 성경 지식을 많이 아는 교만한 사람이 되는 것</p>
+              </button>
+              <button onclick="selectFriQuiz(4, 2)" id="fri-btn-4-2" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">②</div>
+                <p class="text-xs text-slate-700">하나님의 말씀을 깊이 깨닫고, 죄를 회개하며, 삶의 기쁜 순종으로 이어지는 것</p>
+              </button>
+              <button onclick="selectFriQuiz(4, 3)" id="fri-btn-4-3" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">③</div>
+                <p class="text-xs text-slate-700">예배당 건물을 세상에서 제일 화려하고 크게 꾸미는 것</p>
+              </button>
+              <button onclick="selectFriQuiz(4, 4)" id="fri-btn-4-4" class="text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-xs shrink-0">④</div>
+                <p class="text-xs text-slate-700">세상에서 부자가 되어 아무 걱정 없이 사는 것</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm" id="fri-card-5">
+            <span class="text-xs font-bold text-slate-400">질문 5 (상황형 마음 조언)</span>
+            <div class="bg-teal-50 border border-teal-150 p-4 rounded-xl mt-1.5 space-y-2">
+              <p class="text-xs text-teal-950 font-medium leading-relaxed">
+                💬 주일 예배 때 “어려운 이웃을 돕고 사랑을 나누라”는 목사님의 설교를 듣고 감동을 받았지만, 학교에 가면 막상 내 용돈으로 친구를 돕는 것이 아깝게 느껴집니다.<br><br>
+                <span class="italic text-slate-700">“느헤미야 8장 말씀 속에서 이웃과 음식을 나누고 초막절을 지켰던 백성들의 모습을 생각할 때, 킹덤틴즈인 나는 이 상황에서 어떻게 행동해야 참된 부흥을 경험할 수 있을까요?”</span>
+              </p>
+            </div>
+
+            <div class="space-y-2 mt-4">
+              <textarea id="ans-fri-5" rows="4" placeholder="예: 하나님의 말씀을 듣고 감동받는 것으로 끝나지 않고, 느헤미야 시대 백성들처럼 아까워하는 마음을 내려놓고 작은 간식이나 용돈으로 친구를 돕는 순종을 실천할 때 하나님이 주시는 참된 기쁨과 부흥을 경험할 수 있습니다! (3자 이상 입력)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 text-base" oninput="checkFriSubjective()"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- General Completion Action Area -->
+      <div id="bottom-complete-bar" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col gap-4 items-center justify-between text-center md:text-left md:flex-row">
+        <div>
+          <h3 id="btn-complete-title" class="font-bold text-slate-900 text-sm md:text-base">월요일 큐티를 다 채우셨나요?</h3>
+          <p id="btn-complete-desc" class="text-[11px] text-slate-500 mt-1">수문 앞 광장에서 말씀을 향해 귀 기울인 백성의 태도 리포트를 완성해 보세요.</p>
+        </div>
+        <button onclick="generateReport()" class="w-full md:w-auto bg-teal-600 hover:bg-teal-700 active:bg-teal-800 text-white font-bold px-5 py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs md:text-sm">
+          <i class="fa-solid fa-file-image"></i> <span id="btn-complete-text">월요일 결과 리포트 만들기</span>
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- CAPTURE REPORT MODAL -->
+  <div id="report-modal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto hidden">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 md:p-8 space-y-5 relative shadow-2xl my-8">
+      
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+        <i class="fa-solid fa-circle-xmark text-2xl"></i>
+      </button>
+
+      <!-- The capturing zone -->
+      <div id="capture-zone" class="bg-gradient-to-br from-teal-50 via-sky-50 to-amber-50 p-5 md:p-8 rounded-2xl border border-teal-200/60 shadow-inner relative overflow-hidden">
+        
+        <!-- Decorative Watermark Background -->
+        <div class="absolute -right-16 -bottom-16 text-teal-200/20 pointer-events-none">
+          <i class="fa-solid fa-book-bible text-[240px] transform -rotate-12"></i>
+        </div>
+
+        <div class="relative space-y-4">
+          <!-- Report Header -->
+          <div class="flex justify-between items-start border-b border-teal-200 pb-3">
+            <div>
+              <span id="rep-stage-badge" class="bg-teal-600 text-white text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">월요일 큐티 완료</span>
+              <h2 id="rep-title" class="text-base md:text-xl font-black text-slate-900 mt-1">1단계: 말씀을 향한 간절한 태도</h2>
+              <p class="text-[11px] text-slate-600 mt-0.5">수문 앞 광장의 말씀 부흥 리포트</p>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="text-xs font-bold text-teal-800 bg-teal-100/80 px-2.5 py-0.5 rounded">킹덤틴즈 23과</span>
+              <p class="text-[9px] text-slate-400 mt-1" id="report-date"></p>
+            </div>
+          </div>
+
+          <!-- Dynamic Answers Container inside Capture Card -->
+          <div id="rep-answers-list" class="space-y-3">
+            <!-- Dynamic list items will be injected via JS -->
+          </div>
+
+          <!-- Report Footer Statement -->
+          <div class="text-center pt-3 border-t border-teal-200">
+            <p class="text-[11px] text-slate-500 italic">“여호와로 인하여 기뻐하는 것이 너희의 힘이니라” (느 8:10)</p>
+            <p class="text-[9px] text-teal-800 font-bold mt-1">말씀을 듣고, 회개하며, 삶 속에서 기쁨으로 순종하는 킹덤틴즈가 되겠습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-end pt-2">
+        <button onclick="shareAppUrl()" class="w-full sm:w-auto bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 font-bold px-5 py-2 rounded-xl transition text-xs flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-link"></i> 초대 주소 복사
+        </button>
+        <button onclick="closeModal()" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl transition text-xs">
+          조금 더 수정하기
+        </button>
+        <button onclick="downloadReportImage()" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-md">
+          <i class="fa-solid fa-download"></i> 리포트 캡처 이미지 저장
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Reset Modal -->
+  <div id="reset-confirm-modal" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 space-y-4 text-center shadow-2xl border border-slate-100">
+      <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto text-xl">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <div class="space-y-1">
+        <h3 class="font-bold text-slate-900 text-base">23과 진도 초기화</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">작성한 답변과 잠금 해제 상태가 모두 초기화됩니다. 처음부터 다시 도전할까요?</p>
+      </div>
+      <div class="flex gap-2.5 pt-2">
+        <button onclick="closeResetModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs transition">취소</button>
+        <button onclick="confirmResetProgress()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition">전체 초기화</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Alert Toast Box -->
+  <div id="alert-box" class="fixed bottom-6 right-6 left-6 sm:left-auto bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none max-w-sm">
+    <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+      <i class="fa-solid fa-check text-[10px]"></i>
+    </span>
+    <span id="alert-msg" class="text-xs font-semibold">알림 메시지</span>
+  </div>
+
+  <script>
+    const days = ['mon', 'tue', 'wed', 'thu', 'fri'];
+    let currentDay = 'mon';
+
+    function safeGetStorage(key, defaultValue) {
+      try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : defaultValue;
+      } catch(e) {
+        return defaultValue;
+      }
+    }
+
+    function safeSetStorage(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch(e) {
+        console.warn('LocalStorage save failed:', e);
+      }
+    }
+
+    // 23과 잠금 해제 상태 관리 (월요일 기본 해제)
+    let unlockedDays = safeGetStorage('kt23_unlocked_days', {
+      mon: true,
+      tue: false,
+      wed: false,
+      thu: false,
+      fri: false
+    });
+
+    // 23과 정답 체크 딕셔너리 (1문항 1빈칸 단일화)
+    const WEEKLY_ANSWERS = {
+      mon: {
+        1: ["율법책", "모세의 율법책"],
+        2: ["일어서니라", "일어섰다", "일어섬"],
+        3: ["아멘 아멘", "아멘아멘", "아멘"],
+        4: ["깨닫게", "깨닫게 하니", "깨닫게함"]
+      },
+      tue: {
+        1: ["우는지라", "울었다", "울음"],
+        2: ["나누어 주라", "나누어주라", "나누어 줌", "나눔"],
+        3: ["초막", "초막절"],
+        4: ["기뻐하며", "기뻐함", "즐거워하며"]
+      },
+      thu: {
+        1: ["부흥"],
+        2: ["순종", "순종함"],
+        3: ["교사", "선생님", "성경교사"],
+        4: ["사랑", "사랑을"]
+      },
+      fri: {
+        1: 2, // ② X
+        2: 3, // ③ 지루해하며 빨리 끝내라고 소리침 (올바른 태도 아님)
+        3: 3, // ③ 거룩한 성일이니 기뻐하며 음식을 나누어 주라
+        4: 2  // ② 말씀을 깊이 깨닫고 회개하며 삶의 기쁜 순종으로 이어짐
+      }
+    };
+
+    let daySolvedState = safeGetStorage('kt23_day_solved_state', {
+      mon: { 1: false, 2: false, 3: false, 4: false, 5: false },
+      tue: { 1: false, 2: false, 3: false, 4: false, 5: false },
+      wed: { reflex: false },
+      thu: { 1: false, 2: false, 3: false, 4: false, 5: false },
+      fri: { 1: false, 2: false, 3: false, 4: false, 5: false }
+    });
+
+    let friSelectedChoices = safeGetStorage('kt23_fri_selected', { 1: null, 2: null, 3: null, 4: null });
+
+    // 느헤미야 8장 1절부터 18절까지 전문 전체 렌더링 (강조 볼드/배경 박스 없이 순수 텍스트 제공)
+    function getNehemiah8FullHtml() {
+      return `
+        <div class="bg-teal-50/70 border-l-4 border-teal-500 p-3 rounded-r-xl mb-3">
+          <p class="text-xs font-bold text-teal-900">📖 느헤미야 8장 1-18절 전체 말씀 (개역개정)</p>
+          <p class="text-[11px] text-teal-800 mt-0.5">본문 1절부터 18절까지 차분히 읽으면서 질문에 들어갈 핵심 단어를 찾아보세요.</p>
+        </div>
+        <div class="space-y-3.5 pr-2 max-h-[580px] overflow-y-auto border border-slate-200/80 p-3.5 rounded-xl bg-slate-50/50 text-[13px] md:text-[14px] leading-relaxed">
+          <div class="font-bold text-slate-800 border-b border-slate-200 pb-1 text-xs text-teal-800">
+            [에스라가 율법책을 낭독하다 (느 8:1-8)]
+          </div>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:1</strong> 이스라엘 자손이 자기들의 성읍에 거주하였더니 일곱째 달에 이르러 모든 백성이 일제히 수문 앞 광장에 모여 학사 에스라에게 여호와께서 이스라엘에게 명령하신 모세의 율법책을 가져오기를 청하매</p>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:2</strong> 일곱째 달 초하루에 제사장 에스라가 율법책을 가지고 회중 앞 곧 남자나 여자나 알아들을 만한 모든 사람 앞에 이르러</p>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:3</strong> 수문 앞 광장에서 새벽부터 정오까지 남자나 여자나 알아들을 만한 모든 사람 앞에서 읽으매 뭇 백성이 그 율법책에 귀를 기울였는데</p>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:4</strong> 그 때에 학사 에스라가 특별히 지은 나무 강단에 서고 그의 곁 오른쪽에 선 자는 맛디댜와 스마와 아나야와 우리야와 힐기야와 마아세야요 그의 왼쪽에 선 자는 브다야와 미사엘과 말기야와 하숨과 하스밧다나와 스가랴와 므술람이라</p>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:5</strong> 에스라가 모든 백성 위에 서서 그들 목전에 책을 펴니 책을 펼 때에 모든 백성이 일어서니라</p>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:6</strong> 에스라가 위대하신 하나님 여호와를 송축하매 모든 백성이 손을 들고 아멘 아멘 하고 응답하고 몸을 굽혀 얼굴을 땅에 대고 여호와께 경배하니라</p>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:7</strong> 예수아와 바니와 세레뱌와 야민과 악굽과 사브대와 호디야와 마아세야와 그리다와 아사랴와 요사밧과 하난과 블라야와 레위 사람들은 백성이 제자리에 서 있는 동안 그들에게 율법을 깨닫게 하였는데</p>
+          <p><strong class="text-teal-700 bg-teal-100/80 px-1 py-0.5 rounded mr-1">8:8</strong> 하나님의 율법책을 낭독하고 그 뜻을 해석하여 백성에게 그 낭독하는 것을 다 깨닫게 하니</p>
+
+          <div class="font-bold text-slate-800 border-b border-slate-200 pb-1 text-xs text-amber-800 pt-3">
+            [백성이 울자 기뻐하라 권하고 초막절을 지키다 (느 8:9-18)]
+          </div>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:9</strong> 백성이 율법의 말씀을 듣고 다 우는지라 총독 느헤미야와 제사장 겸 학사 에스라와 백성을 가르치는 레위 사람들이 모든 백성에게 이르기를 오늘은 너희 하나님 여호와의 성일이니 슬퍼하지 말며 울지 말라 하고</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:10</strong> 느헤미야가 또 그들에게 이르기를 너희는 가서 살진 것을 먹고 단 것을 마시되 준비하지 못한 자에게는 나누어 주라 이 날은 우리 주의 성일이니 근심하지 말라 여호와로 인하여 기뻐하는 것이 너희의 힘이니라 하고</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:11</strong> 레위 사람들도 모든 백성을 정숙하게 하여 이르기를 오늘은 성일이니 마땅히 조용하고 근심하지 말라 하니</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:12</strong> 모든 백성이 곧 가서 먹고 마시며 나누어 주고 크게 즐거워하니 이는 그들이 그 읽어 들려 준 말을 밝히 앎이라</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:13</strong> 그 이튿날 뭇 백성의 족장들과 제사장들과 레위 사람들이 율법의 말씀을 밝히 알고자 하여 학사 에스라에게 모여서</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:14</strong> 율법에 기록된 바를 본즉 여호와께서 모세를 통하여 명령하시기를 이스라엘 자손은 일곱째 달 절기에 초막에서 거할지니라 하였고</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:15</strong> 또 일렀으되 모든 성읍과 예루살렘에 공포하여 이르기를 너희는 산에 가서 감람나무 가지와 들감람나무 가지와 화석류나무 가지와 종려나무 가지와 기타 무성한 나무 가지를 가져다가 기록한 바를 따라 초막을 지으라 하라 한지라</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:16</strong> 백성이 이에 나가서 나뭇가지를 가져다가 혹은 지붕 위에, 혹은 뜰 안에, 혹은 하나님의 전 뜰에, 혹은 수문 광장에, 혹은 에브라임 문 광장에 초막을 짓되</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:17</strong> 사로잡혔다가 돌아온 회중이 다 초막을 짓고 그 안에서 거하니 눈의 아들 여호수아 때로부터 그 날까지 이스라엘 자손이 이같이 행한 일이 없었으므로 이에 크게 기뻐하며</p>
+          <p><strong class="text-amber-700 bg-amber-100/80 px-1 py-0.5 rounded mr-1">8:18</strong> 에스라는 첫날부터 끝날까지 날마다 하나님의 율법책을 낭독하고 무리가 이레 동안 절기를 지키고 여덟째 날에 규례를 따라 성회를 열었느니라</p>
+        </div>
+      `;
+    }
+
+    function updateLeftBibleContent(day) {
+      const bibleDiv = document.getElementById('left-content-bible');
+      const leftPanelTitle = document.getElementById('left-panel-title');
+      const leftPanelMeta = document.getElementById('left-panel-meta');
+      if (!bibleDiv) return;
+
+      if (day === 'mon' || day === 'tue') {
+        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-scroll text-teal-500"></i> 성경 말씀 읽기`;
+        if (leftPanelMeta) leftPanelMeta.textContent = "느헤미야 8장 전체 (1-18절)";
+        bibleDiv.innerHTML = getNehemiah8FullHtml();
+      } else if (day === 'thu') {
+        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-scroll text-teal-500"></i> 말씀 & 대교리문답`;
+        if (leftPanelMeta) leftPanelMeta.textContent = "느 8장 & 대교리문답 156문";
+        bibleDiv.innerHTML = `
+          ${getNehemiah8FullHtml()}
+          
+          <div class="p-3.5 bg-teal-50/70 border border-teal-100 rounded-xl space-y-2 mt-4">
+            <p class="text-xs text-teal-950 font-bold leading-normal">
+              📌 웨스트민스터 대교리문답 156문
+            </p>
+            <p class="text-xs text-slate-850 font-semibold bg-white p-3 rounded-lg border border-teal-50 shadow-sm leading-relaxed text-justify">
+              <strong>문 156. 하나님의 말씀은 모든 사람들이 읽어야 합니까?</strong><br><br>
+              답: 비록 모든 사람들이 다 공적으로 회중에게 말씀을 봉독하게 허락되어 있지는 않지만, 어떤 부류의 사람들이라도 각자 개별적으로뿐만 아니라 가족들과 함께 말씀을 읽어야 할 의무는 있습니다.
+            </p>
+          </div>
+        `;
+      }
+    }
+
+    function switchDay(day) {
+      if (!unlockedDays[day]) {
+        const dayNames = { mon: '월요일(1단계)', tue: '화요일(2단계)', wed: '수요일(3단계)', thu: '목요일(4단계)', fri: '금요일(5단계)' };
+        showNotification(`🔒 이전 단계를 성실히 작성하여 [결과 리포트 카드]를 생성하셔야 ${dayNames[day]} 과정이 잠금 해제됩니다!`, false);
+        return;
+      }
+
+      currentDay = day;
+      renderDayTabs();
+
+      const badges = {
+        mon: "월요일 진행 중",
+        tue: "화요일 진행 중",
+        wed: "수요일 진행 중",
+        thu: "목요일 진행 중",
+        fri: "금요일 진행 중"
+      };
+      const dayBadge = document.getElementById('day-badge-name');
+      if (dayBadge) dayBadge.textContent = badges[day];
+
+      const completeTitles = {
+        mon: "월요일 큐티를 다 채우셨나요?",
+        tue: "화요일 큐티를 다 채우셨나요?",
+        wed: "수요일 묵상을 다 채우셨나요?",
+        thu: "목요일 학습을 다 채우셨나요?",
+        fri: "금요일 퀴즈를 완료하셨나요?"
+      };
+      const completeDescs = {
+        mon: "수문 앞 광장에서 말씀을 향해 귀 기울인 백성의 태도 리포트를 완성해 보세요.",
+        tue: "죄에 대한 회개와 이웃 나눔, 초막절 순종의 기쁨 리포트를 캡처해 보세요.",
+        wed: "말씀을 듣고 일상에서 순종의 열매를 맺겠다는 결단 리포트를 만들어 보세요.",
+        thu: "하나님 나라 관점에서 참된 '부흥'의 의미 성찰 리포트를 캡처해 보세요.",
+        fri: "23과 전체 학습을 수료하셨습니다! 말씀 부흥 인증 카드를 소장하세요."
+      };
+      const completeBtnText = {
+        mon: "월요일 결과 리포트 만들기",
+        tue: "화요일 결과 리포트 만들기",
+        wed: "수요일 고백 리포트 만들기",
+        thu: "목요일 결과 리포트 만들기",
+        fri: "금요일 최종 리포트 만들기"
+      };
+
+      const compTitle = document.getElementById('btn-complete-title');
+      if (compTitle) compTitle.textContent = completeTitles[day];
+
+      const compDesc = document.getElementById('btn-complete-desc');
+      if (compDesc) compDesc.textContent = completeDescs[day];
+
+      const compBtnText = document.getElementById('btn-complete-text');
+      if (compBtnText) compBtnText.textContent = completeBtnText[day];
+
+      const leftBible = document.getElementById('left-content-bible');
+      const leftReading = document.getElementById('left-content-reading');
+      const leftQuizIntro = document.getElementById('left-content-quizintro');
+      const readingTabLabel = document.getElementById('reading-tab-label');
+
+      if (day === 'mon' || day === 'tue' || day === 'thu') {
+        if (leftBible) leftBible.classList.remove('hidden');
+        if (leftReading) leftReading.classList.add('hidden');
+        if (leftQuizIntro) leftQuizIntro.classList.add('hidden');
+        if (readingTabLabel) readingTabLabel.textContent = "📖 성경 말씀 읽기";
+        updateLeftBibleContent(day);
+      } else if (day === 'wed') {
+        if (leftBible) leftBible.classList.add('hidden');
+        if (leftReading) {
+          leftReading.classList.remove('hidden');
+          leftReading.innerHTML = `
+            <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-xl">
+              <p class="text-xs font-bold text-teal-900">💡 3단계 킹덤 리딩 칼럼</p>
+              <p class="text-[11px] text-teal-800 mt-1">수문 앞 광장에서 일어난 6시간의 말씀 집회와 놀라운 부흥 이야기를 읽어보세요.</p>
+            </div>
+
+            <div class="space-y-6 pr-1 text-slate-800 mt-4 text-[14px]">
+              <section>
+                <h3 class="text-base font-extrabold text-teal-950 border-b border-teal-100 pb-1 mb-2.5 flex items-center gap-1.5">
+                  <span>성벽보다 더 중요한 것 🧱</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  이스라엘 백성이 무너진 예루살렘 성벽을 드디어 완성했어! 튼튼한 성벽 안에 있으면 이방 민족의 공격을 피할 수 있고 평안하게 살 수 있을 것 같았지. 하지만 성벽이 완성된 지 일주일 후, 백성은 수문 앞 광장에 모두 모였어. 웅장한 건물이나 튼튼한 성벽보다, 하나님 나라 백성에게는 ‘하나님의 말씀’으로 채워지는 영적 부흥이 진짜 필요하다는 걸 깨달았기 때문이야! 🕍
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-teal-950 border-b border-teal-100 pb-1 mb-2.5 flex items-center gap-1.5">
+                  <span>6시간의 멈춤 없는 말씀 집회 📖</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  광장에 모인 백성은 학사 에스라에게 모세의 율법책을 가져와 달라고 부탁했어. 에스라가 율법책을 펼치자마자 😲 놀랍게도 어린아이부터 어른까지 남녀노소 모두가 자리에서 일어났어! 하나님의 말씀을 가장 존경한다는 뜻이지. 게다가 무려 6시간 동안, 새벽부터 정오까지 서서 에스라가 읽어주는 말씀에 귀를 기울였단다. 히브리어를 잘 모르는 백성을 위해 레위 사람들은 옆에서 열심히 뜻을 풀어서 설명해 주었지. 🗣️
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-teal-950 border-b border-teal-100 pb-1 mb-2.5 flex items-center gap-1.5">
+                  <span>눈물이 변하여 큰 기쁨으로! 💧🎉</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  말씀의 뜻을 깨닫게 되자 백성은 엉엉 소리 내어 통곡하기 시작했어. 😭 하나님의 말씀에 비춰보니, 그동안 자기들이 얼마나 말씀에서 멀어져 죄를 지었는지 깨닫게 된 거야. 진짜 회개가 터져 나온 거지. 하지만 에스라와 느헤미야는 백성에게 “오늘은 하나님의 거룩한 날이니 슬퍼하지 말고 기뻐하라!”라고 위로했어. 그리고 맛있는 음식을 먹고, 음식을 준비하지 못한 가난한 이웃들에게 음식을 나누어 주라고 했지. 죄를 회개하고 하나님의 자비를 깨달은 자들에게는 슬픔 대신, 나누는 기쁨이 찾아왔어! 🥳
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-teal-950 border-b border-teal-100 pb-1 mb-2.5 flex items-center gap-1.5">
+                  <span>말씀에 순종하는 참된 부흥 🏕️</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  다음 날, 율법을 더 깊이 공부하던 백성은 ‘초막절’을 지켜야 한다는 말씀을 발견했어. 📜 이스라엘을 광야에서 인도하신 하나님을 기억하는 절기지. 백성은 즉시 산으로 올라가 나뭇가지를 꺾어다가 초막을 짓고 일주일 동안 그 안에 머물렀어. 머리로만 말씀을 깨달은 게 아니라, 직접 몸을 움직여 순종의 열매를 맺은 거야! 이 순종을 통해 백성의 마음에는 여호수아 시대 이후 가장 큰 기쁨이 넘쳐났단다. ✨
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-base font-extrabold text-teal-950 border-b border-teal-100 pb-1 mb-2.5 flex items-center gap-1.5">
+                  <span>말씀으로 우리를 회복시키시는 예수님 👑</span>
+                </h3>
+                <p class="leading-relaxed text-justify">
+                  이스라엘의 진짜 회복은 성벽 재건으로 끝난 게 아니라, ‘말씀’이 마음에 심길 때 완성되었어. 참된 하나님 나라 백성은 이처럼 말씀에 합당하게 반응하는 사람들이야. 킹덤틴즈! 지금도 살아계신 하나님의 말씀, 곧 ‘말씀이 육신이 되어 오신 예수 그리스도’께서 우리와 함께하셔. ✝️ 성령님은 성경을 통해 우리에게 날마다 놀라운 영적 부흥을 주시지. 우리도 에스라 시대의 백성들처럼 하나님의 말씀을 귀 기울여 듣고, 죄를 회개하며, 일상에서 순종하는 멋진 하나님 나라 백성이 되자! 🌟
+                </p>
+              </section>
+
+              <section>
+                <div class="bg-teal-50/70 border border-teal-200 rounded-xl p-3.5 space-y-2 mt-4">
+                  <p class="text-xs text-teal-950 font-bold">🌟 [나의 다짐]</p>
+                  <p class="text-xs text-slate-800 leading-relaxed">나는 하나님의 말씀을 귀 기울여 듣고, 죄를 회개하며, 이웃과 사랑을 나누고 말씀에 온전히 순종하는 멋진 하나님 나라 백성이 되겠습니다!</p>
+                  <p class="text-xs text-teal-950 font-bold pt-2">🙏 [마무리 기도]</p>
+                  <p class="text-xs text-slate-800 leading-relaxed">하나님 아버지, 성벽이나 건물보다 말씀으로 영혼이 채워지는 것이 가장 큰 축복임을 배웠습니다. 주님의 말씀을 들을 때 깨닫는 마음과 진정한 회개를 주시고, 여호와를 기뻐함이 저의 힘이 되게 해 주세요. 배운 말씀을 삶에서 기쁨으로 실천하는 킹덤틴즈가 되게 해 주세요. 예수님의 이름으로 기도합니다. 아멘.</p>
+                </div>
+              </section>
+            </div>
+          `;
+        }
+        const leftPanelTitle = document.getElementById('left-panel-title');
+        const leftPanelMeta = document.getElementById('left-panel-meta');
+        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-book-open text-teal-600"></i> 3단계 킹덤 리딩`;
+        if (leftPanelMeta) leftPanelMeta.textContent = "수문 앞 광장의 영적 부흥";
+        if (readingTabLabel) readingTabLabel.textContent = "📖 킹덤 리딩 읽기";
+      } else if (day === 'fri') {
+        if (leftBible) leftBible.classList.add('hidden');
+        if (leftReading) leftReading.classList.add('hidden');
+        if (leftQuizIntro) {
+          leftQuizIntro.classList.remove('hidden');
+          leftQuizIntro.innerHTML = `
+            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-xl">
+              <p class="text-xs font-bold text-emerald-900">🎯 금요일 최종 퀴즈 가이드</p>
+              <p class="text-[11px] text-emerald-800 mt-1">한 주간 학습한 느헤미야 8장의 핵심 내용(말씀 경청, 회개와 기쁨, 이웃 나눔, 초막절 순종)을 점검하세요.</p>
+            </div>
+            <div class="space-y-4 text-xs md:text-sm text-slate-600 mt-4 leading-relaxed">
+              <p>📍 5단계 퀴즈는 자습용이므로, 선택 시 즉시 정오답 색상 힌트나 강조 효과가 나타나지 않습니다.</p>
+              <p>📍 모든 문항에 솔직하고 진실되게 답을 채운 뒤 ‘결과 리포트 만들기’를 완성해 주세요.</p>
+            </div>
+          `;
+        }
+        const leftPanelTitle = document.getElementById('left-panel-title');
+        const leftPanelMeta = document.getElementById('left-panel-meta');
+        if (leftPanelTitle) leftPanelTitle.innerHTML = `<i class="fa-solid fa-gamepad text-teal-500"></i> 주간 마침표`;
+        if (leftPanelMeta) leftPanelMeta.textContent = "최종 주간 성취도 테스트";
+        if (readingTabLabel) readingTabLabel.textContent = "🎯 퀴즈 정보";
+      }
+
+      days.forEach(d => {
+        const pane = document.getElementById(`quiz-day-${d}`);
+        if (pane) {
+          if (d === day) {
+            pane.classList.remove('hidden');
+          } else {
+            pane.classList.add('hidden');
+          }
+        }
+      });
+
+      restoreSavedInputValues(day);
+      recheckAndTriggerBadges(day);
+      switchMobileTab('reading');
+    }
+
+    function saveInputValue(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        try {
+          localStorage.setItem(`kt23_input_${id}`, el.value);
+        } catch(e) {}
+      }
+    }
+
+    function restoreSavedInputValues(day) {
+      let inputsToRestore = [];
+      if (day === 'mon') {
+        inputsToRestore = ['ans-mon-1', 'ans-mon-2', 'ans-mon-3', 'ans-mon-4', 'ans-mon-5'];
+      } else if (day === 'tue') {
+        inputsToRestore = ['ans-tue-1', 'ans-tue-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5'];
+      } else if (day === 'wed') {
+        inputsToRestore = ['ans-wed-reflex'];
+      } else if (day === 'thu') {
+        inputsToRestore = ['ans-thu-1', 'ans-thu-2', 'ans-thu-3', 'ans-thu-4', 'ans-thu-5'];
+      } else if (day === 'fri') {
+        inputsToRestore = ['ans-fri-5'];
+      }
+
+      inputsToRestore.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          try {
+            const savedVal = localStorage.getItem(`kt23_input_${id}`);
+            if (savedVal !== null) {
+              el.value = savedVal;
+            }
+          } catch(e) {}
+        }
+      });
+    }
+
+    function checkMonAnswer(step) {
+      if (step >= 1 && step <= 4) {
+        const input = document.getElementById(`ans-mon-${step}`) ? document.getElementById(`ans-mon-${step}`).value.trim() : "";
+        saveInputValue(`ans-mon-${step}`);
+        if (WEEKLY_ANSWERS.mon[step].includes(input)) {
+          revealCorrect('mon', step);
+        }
+      } else if (step === 5) {
+        const text = document.getElementById('ans-mon-5') ? document.getElementById('ans-mon-5').value.trim() : "";
+        saveInputValue('ans-mon-5');
+        daySolvedState.mon[5] = text.length >= 3;
+        safeSetStorage('kt23_day_solved_state', daySolvedState);
+      }
+    }
+
+    function checkTueAnswer(step) {
+      if (step >= 1 && step <= 4) {
+        const input = document.getElementById(`ans-tue-${step}`) ? document.getElementById(`ans-tue-${step}`).value.trim() : "";
+        saveInputValue(`ans-tue-${step}`);
+        if (WEEKLY_ANSWERS.tue[step].includes(input)) {
+          revealCorrect('tue', step);
+        }
+      } else if (step === 5) {
+        const text = document.getElementById('ans-tue-5') ? document.getElementById('ans-tue-5').value.trim() : "";
+        saveInputValue('ans-tue-5');
+        daySolvedState.tue[5] = text.length >= 3;
+        safeSetStorage('kt23_day_solved_state', daySolvedState);
+      }
+    }
+
+    function checkWedAnswer() {
+      const text = document.getElementById('ans-wed-reflex') ? document.getElementById('ans-wed-reflex').value.trim() : "";
+      saveInputValue('ans-wed-reflex');
+      daySolvedState.wed.reflex = text.length >= 3;
+      safeSetStorage('kt23_day_solved_state', daySolvedState);
+    }
+
+    function checkThuAnswer(step) {
+      let isCorrect = false;
+
+      if (step >= 1 && step <= 4) {
+        const inVal = document.getElementById(`ans-thu-${step}`) ? document.getElementById(`ans-thu-${step}`).value.trim() : "";
+        saveInputValue(`ans-thu-${step}`);
+        isCorrect = WEEKLY_ANSWERS.thu[step].includes(inVal);
+      } else if (step === 5) {
+        const text = document.getElementById('ans-thu-5') ? document.getElementById('ans-thu-5').value.trim() : "";
+        saveInputValue('ans-thu-5');
+        daySolvedState.thu[5] = text.length >= 3;
+        safeSetStorage('kt23_day_solved_state', daySolvedState);
+        return;
+      }
+
+      const badge = document.getElementById(`badge-thu-${step}`);
+      const card = document.getElementById(`thu-card-${step}`);
+
+      if (isCorrect) {
+        daySolvedState.thu[step] = true;
+        if (badge) {
+          badge.classList.remove('hidden');
+          badge.classList.add('flex');
+        }
+        if (card) {
+          card.classList.add('bg-emerald-50/25', 'border-emerald-200');
+        }
+      } else {
+        daySolvedState.thu[step] = false;
+        if (badge) {
+          badge.classList.add('hidden');
+          badge.classList.remove('flex');
+        }
+        if (card) {
+          card.classList.remove('bg-emerald-50/25', 'border-emerald-200');
+        }
+      }
+
+      safeSetStorage('kt23_day_solved_state', daySolvedState);
+    }
+
+    function selectFriQuiz(questionNum, optionNum) {
+      friSelectedChoices[questionNum] = optionNum;
+      safeSetStorage('kt23_fri_selected', friSelectedChoices);
+
+      if (questionNum === 1) {
+        const btn1 = document.getElementById('fri-btn-1-1');
+        const btn2 = document.getElementById('fri-btn-1-2');
+        if (btn1) btn1.className = "border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex flex-col items-center gap-2";
+        if (btn2) btn2.className = "border-2 border-slate-200 rounded-2xl p-4 text-slate-700 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex flex-col items-center gap-2";
+      } else {
+        for (let i = 1; i <= 4; i++) {
+          const btn = document.getElementById(`fri-btn-${questionNum}-${i}`);
+          if (btn) btn.className = "text-left border-2 border-slate-200 rounded-2xl p-3.5 hover:border-teal-500 hover:bg-teal-50/25 transition-all flex gap-3 items-center w-full";
+        }
+      }
+
+      const selectedBtn = document.getElementById(`fri-btn-${questionNum}-${optionNum}`);
+      if (selectedBtn) {
+        if (questionNum === 1) {
+          selectedBtn.className = "border-2 border-teal-500 bg-teal-50/50 text-teal-950 rounded-2xl p-4 transition-all flex flex-col items-center gap-2 shadow-sm";
+        } else {
+          selectedBtn.className = "text-left border-2 border-teal-500 bg-teal-50/50 rounded-2xl p-3.5 transition-all flex gap-3 items-center w-full shadow-sm";
+        }
+      }
+
+      daySolvedState.fri[questionNum] = (optionNum !== null);
+      safeSetStorage('kt23_day_solved_state', daySolvedState);
+    }
+
+    function checkFriSubjective() {
+      const text = document.getElementById('ans-fri-5') ? document.getElementById('ans-fri-5').value.trim() : "";
+      saveInputValue('ans-fri-5');
+      daySolvedState.fri[5] = text.length >= 3;
+      safeSetStorage('kt23_day_solved_state', daySolvedState);
+    }
+
+    function revealCorrect(day, step, showToast = true) {
+      if (daySolvedState[day][step]) return;
+      
+      daySolvedState[day][step] = true;
+      safeSetStorage('kt23_day_solved_state', daySolvedState);
+      
+      const badge = document.getElementById(`badge-${day}-${step}`);
+      if (badge) {
+        badge.classList.remove('hidden');
+        badge.classList.add('flex');
+      }
+
+      const explain = document.getElementById(`explain-${day}-${step}`);
+      if (explain) {
+        explain.classList.remove('hidden');
+        explain.classList.add('block');
+      }
+
+      const card = document.getElementById(`${day}-card-${step}`);
+      if (card) {
+        card.classList.add('bg-emerald-50/25', 'border-emerald-200');
+      }
+
+      if (showToast) {
+        showNotification(`${step}번 정답을 찾으셨습니다! 해설 카드가 해제되었습니다.`);
+      }
+    }
+
+    function recheckAndTriggerBadges(day) {
+      if (day === 'mon') {
+        for (let i = 1; i <= 4; i++) {
+          if (daySolvedState.mon[i]) {
+            daySolvedState.mon[i] = false;
+            revealCorrect('mon', i, false);
+          }
+        }
+      } else if (day === 'tue') {
+        for (let i = 1; i <= 4; i++) {
+          if (daySolvedState.tue[i]) {
+            daySolvedState.tue[i] = false;
+            revealCorrect('tue', i, false);
+          }
+        }
+      } else if (day === 'thu') {
+        for (let i = 1; i <= 5; i++) {
+          checkThuAnswer(i);
+        }
+      } else if (day === 'fri') {
+        for (let q = 1; q <= 4; q++) {
+          const opt = friSelectedChoices[q];
+          if (opt !== null) {
+            selectFriQuiz(q, opt);
+          }
+        }
+      }
+    }
+
+    function renderDayTabs() {
+      const koreanDays = { mon: '월(1단계)', tue: '화(2단계)', wed: '수(3단계)', thu: '목(4단계)', fri: '금(5단계)' };
+      days.forEach(d => {
+        const tabBtn = document.getElementById(`day-tab-${d}`);
+        if (tabBtn) {
+          const isUnlocked = unlockedDays[d];
+          const isCurrent = (d === currentDay);
+          
+          let label = koreanDays[d];
+          if (!isUnlocked) label += ' 🔒';
+          tabBtn.textContent = label;
+          
+          if (isCurrent) {
+            tabBtn.className = "px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-teal-600 text-white transition-all shadow-sm shrink-0";
+          } else if (!isUnlocked) {
+            tabBtn.className = "px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-400 cursor-not-allowed opacity-60 transition-all shrink-0";
+          } else {
+            tabBtn.className = "px-3 py-1.5 rounded-xl text-xs md:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shrink-0";
+          }
+        }
+      });
+    }
+
+    function switchMobileTab(tabName) {
+      const paneReading = document.getElementById('pane-reading');
+      const paneActivity = document.getElementById('pane-activity');
+      const btnReading = document.getElementById('tab-btn-reading');
+      const btnActivity = document.getElementById('tab-btn-activity');
+
+      if (tabName === 'reading') {
+        if (paneReading) paneReading.classList.remove('hidden');
+        if (paneActivity) paneActivity.classList.add('hidden');
+        if (btnReading) btnReading.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-teal-800 bg-teal-50 transition-all flex items-center justify-center gap-1.5";
+        if (btnActivity) btnActivity.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-slate-500 hover:text-slate-800 transition-all flex items-center justify-center gap-1.5";
+      } else {
+        if (paneReading) paneReading.classList.add('hidden');
+        if (paneActivity) {
+          paneActivity.classList.remove('hidden');
+          paneActivity.classList.add('flex');
+        }
+        if (btnActivity) btnActivity.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-teal-800 bg-teal-50 transition-all flex items-center justify-center gap-1.5";
+        if (btnReading) btnReading.className = "flex-1 py-2 text-xs md:text-sm font-bold rounded-lg text-slate-500 hover:text-slate-800 transition-all flex items-center justify-center gap-1.5";
+      }
+    }
+
+    function showNotification(message, isSuccess = true) {
+      const alertBox = document.getElementById('alert-box');
+      const alertMsg = document.getElementById('alert-msg');
+      if (alertMsg) alertMsg.innerHTML = message;
+      if (alertBox) {
+        if (isSuccess) {
+          alertBox.className = "fixed bottom-6 right-6 left-6 sm:left-auto bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 pointer-events-none max-w-sm";
+        } else {
+          alertBox.className = "fixed bottom-6 right-6 left-6 sm:left-auto bg-rose-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 pointer-events-none max-w-sm";
+        }
+      }
+      setTimeout(() => {
+        if (alertBox) alertBox.className = "fixed bottom-6 right-6 left-6 sm:left-auto bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none max-w-sm";
+      }, 3500);
+    }
+
+    function generateReport() {
+      if (currentDay === 'mon') {
+        for(let i=1; i<=4; i++) checkMonAnswer(i);
+        checkMonAnswer(5);
+      } else if (currentDay === 'tue') {
+        for(let i=1; i<=4; i++) checkTueAnswer(i);
+        checkTueAnswer(5);
+      } else if (currentDay === 'wed') {
+        checkWedAnswer();
+      } else if (currentDay === 'thu') {
+        for(let i=1; i<=5; i++) checkThuAnswer(i);
+      } else if (currentDay === 'fri') {
+        checkFriSubjective();
+      }
+
+      let isDayComplete = false;
+      if (currentDay === 'mon' || currentDay === 'tue' || currentDay === 'thu' || currentDay === 'fri') {
+        isDayComplete = Object.values(daySolvedState[currentDay]).every(Boolean);
+      } else if (currentDay === 'wed') {
+        isDayComplete = daySolvedState.wed.reflex;
+      }
+
+      if (!isDayComplete) {
+        showNotification("오늘 해당하는 모든 질문과 빈칸(서술형 포함)을 채우셔야 결과 리포트가 열리고 다음 요일이 해금됩니다! ✏️", false);
+        return;
+      }
+
+      const repTitle = document.getElementById('rep-title');
+      const repStageBadge = document.getElementById('rep-stage-badge');
+      const repAnswersList = document.getElementById('rep-answers-list');
+      if (repAnswersList) repAnswersList.innerHTML = '';
+
+      if (currentDay === 'mon') {
+        if (repStageBadge) repStageBadge.textContent = "월요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "1단계: 말씀을 향한 간절한 태도 (느 8:1-8)";
+
+        const a1 = document.getElementById('ans-mon-1') ? document.getElementById('ans-mon-1').value.trim() : "";
+        const a2 = document.getElementById('ans-mon-2') ? document.getElementById('ans-mon-2').value.trim() : "";
+        const a3 = document.getElementById('ans-mon-3') ? document.getElementById('ans-mon-3').value.trim() : "";
+        const a4 = document.getElementById('ans-mon-4') ? document.getElementById('ans-mon-4').value.trim() : "";
+        const a5 = document.getElementById('ans-mon-5') ? document.getElementById('ans-mon-5').value.trim() : "";
+
+        injectReportItem(1, "백성이 가져오기를 청한 것", `모세의 ${a1}을 가져오기를 청함`);
+        injectReportItem(2, "책을 펼 때 백성의 태도", `책을 펼 때 모든 백성이 ${a2}`);
+        injectReportItem(3, "송축할 때 백성의 화답", `손을 들고 ${a3} 하고 응답함`);
+        injectReportItem(4, "레위 사람들의 말씀 섬김", `낭독하는 것을 다 ${a4} 하니`);
+        injectReportItem(5, "설교와 말씀 묵상을 대하는 나의 자세", a5, true);
+      }
+
+      else if (currentDay === 'tue') {
+        if (repStageBadge) repStageBadge.textContent = "화요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "2단계: 회개와 거룩한 기쁨의 순종 (느 8:9-18)";
+
+        const a1 = document.getElementById('ans-tue-1') ? document.getElementById('ans-tue-1').value.trim() : "";
+        const a2 = document.getElementById('ans-tue-2') ? document.getElementById('ans-tue-2').value.trim() : "";
+        const a3 = document.getElementById('ans-tue-3') ? document.getElementById('ans-tue-3').value.trim() : "";
+        const a4 = document.getElementById('ans-tue-4') ? document.getElementById('ans-tue-4').value.trim() : "";
+        const a5 = document.getElementById('ans-tue-5') ? document.getElementById('ans-tue-5').value.trim() : "";
+
+        injectReportItem(1, "말씀을 듣고 백성이 보인 첫 반응", `율법의 말씀을 듣고 다 ${a1} (회개 통곡)`);
+        injectReportItem(2, "지도자들의 권면과 나눔의 실천", `준비 못한 자에게는 ${a2}`);
+        injectReportItem(3, "말씀대로 지키기로 결단한 절기", `일곱째 달 절기에 ${a3}에 거할지니라`);
+        injectReportItem(4, "나뭇가지로 초막을 지킨 백성의 마음", `여호수아 이후로 없었던 큰 기쁨으로 크게 ${a4}`);
+        injectReportItem(5, "삶에서 순종으로 옮겨야 할 나의 결단", a5, true);
+      }
+
+      else if (currentDay === 'wed') {
+        if (repStageBadge) repStageBadge.textContent = "수요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "3단계: 킹덤 리딩 칼럼 묵상";
+
+        const reflex = document.getElementById('ans-wed-reflex') ? document.getElementById('ans-wed-reflex').value.trim() : "";
+        injectReportItem("📖", "말씀을 듣고 회개하며 순종하는 백성의 다짐", reflex, true);
+      }
+
+      else if (currentDay === 'thu') {
+        if (repStageBadge) repStageBadge.textContent = "목요일 큐티 완료";
+        if (repTitle) repTitle.textContent = "4단계: 하나님 나라 관점 (참된 부흥)";
+
+        const a1 = document.getElementById('ans-thu-1') ? document.getElementById('ans-thu-1').value.trim() : "";
+        const a2 = document.getElementById('ans-thu-2') ? document.getElementById('ans-thu-2').value.trim() : "";
+        const a3 = document.getElementById('ans-thu-3') ? document.getElementById('ans-thu-3').value.trim() : "";
+        const a4 = document.getElementById('ans-thu-4') ? document.getElementById('ans-thu-4').value.trim() : "";
+        const a5 = document.getElementById('ans-thu-5') ? document.getElementById('ans-thu-5').value.trim() : "";
+
+        injectReportItem(1, "성벽 완공 후 반드시 필요했던 것", `말씀으로 인한 백성의 영적 ${a1}`);
+        injectReportItem(2, "참된 영적 부흥의 핵심 완성", `말씀대로 기쁘게 ${a2}하는 과정`);
+        injectReportItem(3, "오늘날 세우신 말씀 사역자들", `하나님이 세우신 목사님과 성경 ${a3}들`);
+        injectReportItem(4, "세상과 다른 하나님 나라의 통치", `말씀에 순종하여 이웃과 ${a4}을 나눔`);
+        injectReportItem(5, "대교리문답 156문: 개인 및 가족 성경 묵상 실천 계획", a5, true);
+      }
+
+      else if (currentDay === 'fri') {
+        if (repStageBadge) repStageBadge.textContent = "금요일 주간 성취 완료";
+        if (repTitle) repTitle.textContent = "5단계: 킹덤 최종 퀴즈 성적표";
+
+        const selected_1 = friSelectedChoices[1] === 2 ? "② X 응답 (정답: 성벽 완공 후 말씀 부흥이 절실히 필요했음)" : "① O 응답";
+        const selected_2 = friSelectedChoices[2] === 3 ? "③ 지루해하며 빨리 끝내라고 소리침 (정답: 올바른 태도가 아님)" : `선택: ${friSelectedChoices[2]}번`;
+        const selected_3 = friSelectedChoices[3] === 3 ? "③ 거룩한 성일이니 기뻐하며 음식을 나누어 주라 (정답)" : `선택: ${friSelectedChoices[3]}번`;
+        const selected_4 = friSelectedChoices[4] === 2 ? "② 말씀을 깊이 깨닫고 회개하며 삶의 기쁜 순종으로 이어짐 (정답)" : `선택: ${friSelectedChoices[4]}번`;
+        const subjectiveText = document.getElementById('ans-fri-5') ? document.getElementById('ans-fri-5').value.trim() : "";
+
+        injectReportItem(1, "Q1. 성벽 완공 후 말씀 필요성 여부", selected_1);
+        injectReportItem(2, "Q2. 율법 낭독 시 올바른 태도가 아닌 것", selected_2);
+        injectReportItem(3, "Q3. 통곡하는 백성을 향한 지도자들의 권면", selected_3);
+        injectReportItem(4, "Q4. 성경이 말하는 참된 부흥의 열매", selected_4);
+        injectReportItem("💬", "Q5. 이웃 사랑과 나눔의 순종 실천 다짐", subjectiveText, true);
+      }
+
+      const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' };
+      const today = new Date();
+      const reportDate = document.getElementById('report-date');
+      if (reportDate) reportDate.textContent = today.toLocaleDateString('ko-KR', options);
+
+      // Lock Progression Logic (Monday to Friday)
+      let newlyUnlocked = null;
+      if (currentDay === 'mon' && !unlockedDays.tue) { unlockedDays.tue = true; newlyUnlocked = '화요일(2단계)'; }
+      else if (currentDay === 'tue' && !unlockedDays.wed) { unlockedDays.wed = true; newlyUnlocked = '수요일(3단계)'; }
+      else if (currentDay === 'wed' && !unlockedDays.thu) { unlockedDays.thu = true; newlyUnlocked = '목요일(4단계)'; }
+      else if (currentDay === 'thu' && !unlockedDays.fri) { unlockedDays.fri = true; newlyUnlocked = '금요일(5단계)'; }
+
+      if (newlyUnlocked) {
+        safeSetStorage('kt23_unlocked_days', unlockedDays);
+        renderDayTabs();
+        showNotification(`🎉 훌륭합니다! 오늘의 고백이 저장되어 <strong>[${newlyUnlocked}]</strong> 단계가 활성화되었습니다!`);
+      }
+
+      const modal = document.getElementById('report-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function injectReportItem(num, label, text, isLong = false) {
+      const repAnswersList = document.getElementById('rep-answers-list');
+      if (!repAnswersList) return;
+      
+      const itemHTML = `
+        <div class="bg-white/80 backdrop-blur-sm p-3.5 rounded-xl border border-teal-100 shadow-sm text-justify">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-5 h-5 bg-teal-600 text-white rounded-full text-xs font-bold flex items-center justify-center shrink-0">${num}</span>
+            <span class="text-xs font-bold text-slate-800">${label}</span>
+          </div>
+          <p class="${isLong ? 'text-slate-800 font-medium italic leading-relaxed whitespace-pre-wrap pl-7 text-xs md:text-sm mt-1' : 'text-sm pl-7 text-teal-700 font-bold'}">
+            ${isLong ? text : `나의 성찰: <span class="bg-teal-50 px-2 py-0.5 rounded border border-teal-200">${text || "(미작성)"}</span>`}
+          </p>
+        </div>
+      `;
+      repAnswersList.insertAdjacentHTML('beforeend', itemHTML);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('report-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function shareAppUrl() {
+      const dummy = document.createElement('input');
+      const text = window.location.href;
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      showNotification('친구들에게 큐티를 권장할 수 있도록 초대 주소가 복사되었습니다! 🔗');
+    }
+
+    function openResetModal() {
+      const resetModal = document.getElementById('reset-confirm-modal');
+      if (resetModal) resetModal.classList.remove('hidden');
+    }
+
+    function closeResetModal() {
+      const resetModal = document.getElementById('reset-confirm-modal');
+      if (resetModal) resetModal.classList.add('hidden');
+    }
+
+    function confirmResetProgress() {
+      try {
+        localStorage.removeItem('kt23_unlocked_days');
+        localStorage.removeItem('kt23_day_solved_state');
+        localStorage.removeItem('kt23_fri_selected');
+        
+        const inputsToClear = [
+          'ans-mon-1', 'ans-mon-2', 'ans-mon-3', 'ans-mon-4', 'ans-mon-5',
+          'ans-tue-1', 'ans-tue-2', 'ans-tue-3', 'ans-tue-4', 'ans-tue-5',
+          'ans-wed-reflex',
+          'ans-thu-1', 'ans-thu-2', 'ans-thu-3', 'ans-thu-4', 'ans-thu-5',
+          'ans-fri-5'
+        ];
+        inputsToClear.forEach(id => localStorage.removeItem(`kt23_input_${id}`));
+      } catch(e) {}
+      location.reload();
+    }
+
+    function downloadReportImage() {
+      const element = document.getElementById('capture-zone');
+      if (!element) return;
+      
+      showNotification('결과 고백 카드를 고화질 캡처 이미지로 변환하고 있습니다. 잠시만 기다려주세요...', true);
+      
+      html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#fffdf9',
+        logging: false
+      }).then(canvas => {
+        const image = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        const todayStr = new Date().toISOString().slice(0,10);
+        
+        link.download = `킹덤틴즈_23과_리포트_${currentDay.toUpperCase()}_${todayStr}.png`;
+        link.href = image;
+        link.click();
+        
+        showNotification('이미지 다운로드가 완료되었습니다! 친구나 소모임 리더 선생님께 공유해 보세요.', true);
+        closeModal();
+      }).catch(err => {
+        showNotification('이미지 변환에 실패했습니다. 환경을 다시 확인해 주세요.', false);
+        console.error(err);
+      });
+    }
+
+    window.onload = function() {
+      renderDayTabs();
+      switchDay('mon');
+    }
+  </script>
+</body>
+</html>
